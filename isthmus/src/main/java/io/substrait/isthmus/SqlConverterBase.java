@@ -144,12 +144,12 @@ class SqlConverterBase {
     return definedTableList;
   }
 
-  protected static SqlParseException fail(String text, SqlParserPos pos) {
-    return new SqlParseException(text, pos, null, null, new RuntimeException("fake lineage"));
+  protected static void fail(String text, SqlParserPos pos) throws SqlParseException {
+    throw new SqlParseException(text, pos, null, null, new RuntimeException("fake lineage"));
   }
 
-  protected static SqlParseException fail(String text) {
-    return fail(text, SqlParserPos.ZERO);
+  protected static void fail(String text) throws SqlParseException {
+    fail(text, SqlParserPos.ZERO);
   }
 
   protected static final class Validator extends SqlValidatorImpl {
